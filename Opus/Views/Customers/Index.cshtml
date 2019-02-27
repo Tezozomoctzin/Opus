@@ -1,23 +1,76 @@
-﻿@model Opus.ViewModels.CustomersViewModel
+﻿@model IEnumerable<Opus.Models.Customer>
 @{
     ViewBag.Title = "Customers List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{ var customerCount = Model.Customers.Count;}
 <h2>Customers List</h2>
-<table class="table-hover table-bordered" style="width: 100%">
-    <tr><td><h3 style="font-size: 25px; font-weight: bolder; color: #008b8b">Customer</h3></td></tr>
-    @if (Model.Customers.Count == 0)
+
+    
+    @if (!Model.Any())
     {
         <text>There are no customers</text>
     }
     else
+
     {
-        foreach (var customer in Model.Customers)
-        {
-            <tr><td><a href="/Customers/Details/@customer.Id" style="font-size: 20px">@customer.Name</a></td></tr>
-        }
+        <table class="table-hover table">
+            <thead>
+            <tr class="table-primary">
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Stability/Volume/Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr class="table-secondary">
+                        <td>@customer.Id</td>
+                        <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>
+                        <td>
+                            @{ var stabilityType = customer.FinancialStability.StabilityType; }
+                            @if (customer.FinancialStabilityId > 5)
+                            {
+                                <span class="badge badge-danger">@stabilityType</span>
+                            }
+                            else if (customer.FinancialStabilityId > 3)
+                            {
+                                <span class="badge badge-warning">@stabilityType</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-success">@stabilityType</span>
+                            }/
+                            @if (customer.NumberOfTransactions > 30)
+                            {
+                                <span class="badge badge-success">Significant</span>
+                            }
+                            else if (customer.NumberOfTransactions > 10)
+                            {
+                                <span class="badge badge-warning">Average</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger">Low</span>
+                            }/
+                            @if (customer.Balance > 1500)
+                            {
+                                <span class="badge badge-success">@customer.Balance$</span>
+                            }
+                            else if (customer.FinancialStabilityId > 500)
+                            {
+                                <span class="badge badge-warning">@customer.Balance$</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger">@customer.Balance$</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
-</table>
+
 
 

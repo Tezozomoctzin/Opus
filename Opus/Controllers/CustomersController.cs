@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,29 +11,36 @@ namespace Opus.Controllers
 {
     public class CustomersController : Controller
     {
-        List<Customer> customers = new List<Customer>
+        private OpusDbContext _context;
+
+        public CustomersController()
         {
-            new Customer() {Name = "Vasily Pantsuhenko", Id = 1},
-            new Customer() {Name = "Grover IV", Id = 2},
-            new Customer() {Name = "Chef Boyardee", Id = 3}
-        };
+            _context = new OpusDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
-          
+
+            var customers = _context.Customers.Include(c => c.FinancialStability).ToList();
             var viewModel = new CustomersViewModel
             {
                 Customers = customers
             };
 
-            return View(viewModel);
+            return View(customers);
         }
 
         [Route("customers/details/{id}")]
         public ActionResult Details(int id)
         {
-            Customer customer = customers[id-1];
-            return View(customer);
+            var customers = _context.Customers.Include(c => c.FinancialStability).SingleOrDefault(c => c.Id == id);
+            return View(customers);
         }
     }
 }

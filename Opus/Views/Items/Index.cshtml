@@ -1,24 +1,40 @@
-﻿@model Opus.ViewModels.ItemsViewModel
+﻿@model IEnumerable<Opus.Models.Item>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Items List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{ var itemsCount = Model.Items.Count;}
 <h2>Items List</h2>
-<table class="table-bordered table-hover" style="width: 100%">
-    <tr><th colspan="2"><h3 style="font-size: 25px; font-weight: bolder; color: #008b8b">Items</h3></th></tr>
-    @if (Model.Items.Count == 0)
-    {
-        <text>There are no items</text>
-    }
-    else
-    {
-        foreach (var item in Model.Items)
+
+@if (!Model.Any())
+{
+    <text>There are no items to display</text>
+
+}
+else
+{
+    <table class="table-hover table">
+        <thead>
+        <tr class="table-primary">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>Original Customer(id)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
         {
-            <tr><td><text style="font-size: 20px">@item.Name</text></td>
-                <td><text style="font-size: 20px">@item.Weight</text></td>
+            <tr class="table-secondary">
+                <td>@item.Id</td>
+                <td>@Html.ActionLink(item.Name, "Details", "Items", new {item.Id}, null)</td>
+                <td>@item.Weight</td>
+                <td>@item.Price</td>
+                <td>@item.Customer.Name (@item.CustomerId)</td>
             </tr>
         }
-    }
-</table>
+        </tbody>
+    </table>
+}
+
