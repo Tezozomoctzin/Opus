@@ -1,0 +1,24 @@
+﻿@model Opus.ViewModels.ItemsViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ var itemsCount = Model.Items.Count;}
+<h2>Items List</h2>
+<table class="table-bordered table-hover" style="width: 100%">
+    <tr><th colspan="2"><h3 style="font-size: 25px; font-weight: bolder; color: #008b8b">Items</h3></th></tr>
+    @if (Model.Items.Count == 0)
+    {
+        <text>There are no items</text>
+    }
+    else
+    {
+        foreach (var item in Model.Items)
+        {
+            <tr><td><text style="font-size: 20px">@item.Name</text></td>
+                <td><text style="font-size: 20px">@item.Weight</text></td>
+            </tr>
+        }
+    }
+</table>

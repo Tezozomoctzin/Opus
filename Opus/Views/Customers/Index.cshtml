@@ -1,0 +1,23 @@
+﻿@model Opus.ViewModels.CustomersViewModel
+@{
+    ViewBag.Title = "Customers List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ var customerCount = Model.Customers.Count;}
+<h2>Customers List</h2>
+<table class="table-hover table-bordered" style="width: 100%">
+    <tr><td><h3 style="font-size: 25px; font-weight: bolder; color: #008b8b">Customer</h3></td></tr>
+    @if (Model.Customers.Count == 0)
+    {
+        <text>There are no customers</text>
+    }
+    else
+    {
+        foreach (var customer in Model.Customers)
+        {
+            <tr><td><a href="/Customers/Details/@customer.Id" style="font-size: 20px">@customer.Name</a></td></tr>
+        }
+    }
+</table>
+
+
