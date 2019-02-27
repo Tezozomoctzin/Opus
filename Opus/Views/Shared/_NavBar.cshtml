@@ -1,0 +1,19 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="collapse navbar-collapse">
+            <table class="navbar-nav mr-auto" id="navbarColor01">
+                <tr>
+                    <th class="nav-item active">
+                        @Html.ActionLink("Opus", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </th>
+                    <th class="nav-item active">
+                        @Html.ActionLink("Items", "Index", "Items", null, new { @class = "nav-link" })
+                    </th>
+                    <th class="nav-item active">
+                        @Html.ActionLink("Customers", "Index", "Customers", null, new { @class = "nav-link" })
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</nav>
