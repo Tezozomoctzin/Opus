@@ -15,7 +15,8 @@
     {
         foreach (var customer in Model.Customers)
         {
-            <tr><td><a href="/Customers/Details/@customer.Id" style="font-size: 20px">@customer.Name</a></td></tr>
+            //<tr><td><a href="/Customers/Details/@customer.Id" style="font-size: 20px">@customer.Name</a></td></tr>
+            <tr><td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id}, null)</a></td></tr>
         }
     }
 </table>
