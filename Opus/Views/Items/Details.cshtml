@@ -1,0 +1,28 @@
+﻿@model Opus.Models.Item
+@{
+    ViewBag.Title = "Details" + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<table class="table">
+    <thead>
+    <tr class="table-info">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Weight, kg</th>
+        <th>Price, $</th>
+        <th>Customer(id)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-secondary">
+        <td>@Model.Id</td>
+        <td>@Model.Name</td>
+        <td>@Model.Weight</td>
+        <td>@Model.Price</td>
+        <td>@Model.Customer.Name (@Model.CustomerId)</td>
+    </tr>
+    </tbody>
+</table>
+

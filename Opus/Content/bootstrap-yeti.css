@@ -4323,7 +4323,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0rem 0rem;
+  padding: 0.5rem 1rem;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -4442,23 +4442,10 @@ input[type="button"].btn-block {
   display: inline-block;
   padding-top: 0.32421875rem;
   padding-bottom: 0.32421875rem;
-  margin-right: 0.5rem;
-  font-size: 2rem;
+  margin-right: 1rem;
+  font-size: 1.171875rem;
   line-height: inherit;
   white-space: nowrap;
-  font-weight: 900;
-}
-
-.navbar-extlist {
-    color: #483d8b;
-    display: inline-block;
-    padding-top: 0.32421875rem;
-    padding-bottom: 0.32421875rem;
-    margin-right: 0.5rem;
-    font-size: 1.4rem;
-    line-height: inherit;
-    white-space: nowrap;
-    font-weight: 400;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {

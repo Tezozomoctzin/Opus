@@ -1,11 +1,31 @@
 ﻿@model Opus.Models.Customer
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details - " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h3>Details</h3>
-<h2>Name :@Model.Name</h2>
-<h4>   ID: @Model.Id</h4>
 
+<table class="table">
+    <thead>Customer Data</thead>
+    <tbody>
+    <tr class="table-info"><td>Name</td>
+        <th>Balance, $</th>
+        <th>Transactions</th>
+        <th>StabilityID</th>
+        @if (Model.BirthDate.HasValue) { 
+            <th>Birth Date</th>
+        }
+    </tr>
+    <tr class="table-secondary"><td>@Model.Name</td>
+        <td>@Model.Balance</td>
+        <td>@Model.NumberOfTransactions</td>
+        <td>@Model.FinancialStability.StabilityType</td>
+        @if (Model.BirthDate.HasValue) { 
+            <td>@Model.BirthDate</td>
+        }
+        </tr>
+    </tbody>
+
+</table>
 

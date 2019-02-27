@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -153,6 +159,49 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902272004044_InitalModel.cs" />
+    <Compile Include="Migrations\201902272004044_InitalModel.Designer.cs">
+      <DependentUpon>201902272004044_InitalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272023520_reworkFS.cs" />
+    <Compile Include="Migrations\201902272023520_reworkFS.Designer.cs">
+      <DependentUpon>201902272023520_reworkFS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272024160_FillFS2.cs" />
+    <Compile Include="Migrations\201902272024160_FillFS2.Designer.cs">
+      <DependentUpon>201902272024160_FillFS2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272037085_UpdatedCustomerModel.cs" />
+    <Compile Include="Migrations\201902272037085_UpdatedCustomerModel.Designer.cs">
+      <DependentUpon>201902272037085_UpdatedCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272144580_AddedBirthDateToCustomer.cs" />
+    <Compile Include="Migrations\201902272144580_AddedBirthDateToCustomer.Designer.cs">
+      <DependentUpon>201902272144580_AddedBirthDateToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272156036_UpdatedItemModel_Price_Origin.cs" />
+    <Compile Include="Migrations\201902272156036_UpdatedItemModel_Price_Origin.Designer.cs">
+      <DependentUpon>201902272156036_UpdatedItemModel_Price_Origin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272157088_FillingItemsTable.cs" />
+    <Compile Include="Migrations\201902272157088_FillingItemsTable.Designer.cs">
+      <DependentUpon>201902272157088_FillingItemsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272235542_ItemUpdate.cs" />
+    <Compile Include="Migrations\201902272235542_ItemUpdate.Designer.cs">
+      <DependentUpon>201902272235542_ItemUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272238249_ItemUpdCstName.cs" />
+    <Compile Include="Migrations\201902272238249_ItemUpdCstName.Designer.cs">
+      <DependentUpon>201902272238249_ItemUpdCstName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272240343_ItemUpdCstName1.cs" />
+    <Compile Include="Migrations\201902272240343_ItemUpdCstName1.Designer.cs">
+      <DependentUpon>201902272240343_ItemUpdCstName1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\FinancialStability.cs" />
+    <Compile Include="Models\OpusDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +254,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -221,6 +271,38 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902272004044_InitalModel.resx">
+      <DependentUpon>201902272004044_InitalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272023520_reworkFS.resx">
+      <DependentUpon>201902272023520_reworkFS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272024160_FillFS2.resx">
+      <DependentUpon>201902272024160_FillFS2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272037085_UpdatedCustomerModel.resx">
+      <DependentUpon>201902272037085_UpdatedCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272144580_AddedBirthDateToCustomer.resx">
+      <DependentUpon>201902272144580_AddedBirthDateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272156036_UpdatedItemModel_Price_Origin.resx">
+      <DependentUpon>201902272156036_UpdatedItemModel_Price_Origin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272157088_FillingItemsTable.resx">
+      <DependentUpon>201902272157088_FillingItemsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272235542_ItemUpdate.resx">
+      <DependentUpon>201902272235542_ItemUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272238249_ItemUpdCstName.resx">
+      <DependentUpon>201902272238249_ItemUpdCstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272240343_ItemUpdCstName1.resx">
+      <DependentUpon>201902272240343_ItemUpdCstName1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

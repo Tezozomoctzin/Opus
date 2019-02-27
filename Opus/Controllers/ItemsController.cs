@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,18 @@ namespace Opus.Controllers
 {
     public class ItemsController : Controller
     {
+        private OpusDbContext _context;
+
+        public ItemsController()
+        {
+            _context = new OpusDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Items
         public ActionResult Random()
         {
@@ -35,18 +48,15 @@ namespace Opus.Controllers
 
         public ActionResult Index(int? pageIndex, string sortBy)
         {
+            var items = _context.Items.Include(c=>c.Customer).ToList();
+            return View(items);
+        }
 
-            var items = new List<Item>
-            {
-                new Item() {Id = 1, Name = "Kettle", Weight = 5.5},
-                new Item() {Id = 2, Name = "TV", Weight = 10.0},
-                new Item() {Id = 3, Name = "Bike", Weight = 22.7}
-            };
-            var viewModel = new ItemsViewModel
-            {
-                Items = items
-            };
-            return View(viewModel);
+        [Route("items/details/{id}")]
+        public ActionResult Details(int id)
+        {
+            var item = _context.Items.Include(c => c.Customer).SingleOrDefault(c => c.Id == id);
+            return View(item);
         }
 
         [Route("items/manufactured/{year:regex(\\d{4)}/{month:regex(\\d{2}:range{1,12})}")]
