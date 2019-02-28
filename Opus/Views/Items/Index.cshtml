@@ -28,7 +28,7 @@ else
         {
             <tr class="table-secondary">
                 <td>@item.Id</td>
-                <td>@Html.ActionLink(item.Name, "Details", "Items", new {item.Id}, null)</td>
+                <td>@Html.ActionLink(item.Name, "Edit", "Items", new {item.Id}, null)</td>
                 <td>@item.Weight</td>
                 <td>@item.Price</td>
                 <td>@item.Customer.Name (@item.CustomerId)</td>

@@ -23,6 +23,25 @@ namespace Opus.Controllers
             _context.Dispose();
         }
 
+        public ActionResult Edit(int id)
+        {
+            var item = _context.Items.SingleOrDefault(i => i.Id == id);
+
+            if (item.Id == 0)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new ItemFormViewModel
+            {
+                Customers = _context.Customers.ToList(),
+                Item = item
+                
+            };
+
+            return View("ItemForm", viewModel);
+        }
+
         // GET: Items
         public ActionResult Random()
         {
@@ -39,11 +58,6 @@ namespace Opus.Controllers
                 Customers = customers
             };
             return View(viewModel);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            return Content("Id = " + id);
         }
 
         public ActionResult Index(int? pageIndex, string sortBy)
@@ -65,5 +79,9 @@ namespace Opus.Controllers
             return Content(year + "/" + month);
         }
 
+        public ActionResult Save(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

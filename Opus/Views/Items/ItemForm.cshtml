@@ -1,0 +1,30 @@
+﻿@model Opus.ViewModels.ItemFormViewModel
+@{
+    ViewBag.Title = "Item Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Item</h2>
+
+@using (Html.BeginForm("Save", "Items"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Item.Name)
+        @Html.TextBoxFor(m => m.Item.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Item.Price)
+        @Html.TextBoxFor(m => m.Item.Price, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Item.Weight)
+        @Html.TextBoxFor(m => m.Item.Weight, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Item.CustomerId)
+        @Html.DropDownListFor(m => m.Item.CustomerId, new SelectList(Model.Customers, "Id", "Name"), "Customer Name", new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Item.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}

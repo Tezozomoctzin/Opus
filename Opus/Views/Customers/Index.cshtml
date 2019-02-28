@@ -5,13 +5,12 @@
 }
 <h2>Customers List</h2>
 
-    
-    @if (!Model.Any())
+@Html.ActionLink("Add", "New", "Customers", null, new {@class = "btn btn-primary"})
+@if (!Model.Any())
     {
         <text>There are no customers</text>
     }
     else
-
     {
         <table class="table-hover table">
             <thead>
@@ -26,7 +25,7 @@
                 {
                     <tr class="table-secondary">
                         <td>@customer.Id</td>
-                        <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>
+                        <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
                         <td>
                             @{ var stabilityType = customer.FinancialStability.StabilityType; }
                             @if (customer.FinancialStabilityId > 5)
